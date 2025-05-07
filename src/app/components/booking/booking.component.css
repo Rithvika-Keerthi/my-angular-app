@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+}
+
+.left-box, .right-box {
+  width: 45%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(239, 205, 205, 0.8);
+}
+
+.right-box {
+  background-color: rgba(239, 205, 205, 0.8); /* Peach background */
+}
+
+.left-box h2, .right-box h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #02070e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.right-box p {
+  margin: 10px 0;
+  color: #555;
+}
+
+.right-box p strong {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.hotel-info {
+  display: flex;
+  align-items: center;
+}
+
+.hotel-text {
+  flex: 1;
+}
+
+.hotel-image {
+  width: 100px; /* Passport size */
+  height: auto;
+  margin-left: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,9 @@
+<div>
+  <h1>Booking Details</h1>
+  <p><strong>Booking ID:</strong> {{ bookingId }}</p>
+  <p><strong>Check-Out Date:</strong> {{ checkOutDate | date }}</p>
+  <label for="check-in-date"><strong>Check-In Date:</strong></label>
+  <input id="check-in-date" type="date" (change)="onCheckInDateChange($event)" />
+  <p *ngIf="checkInDate"><strong>Selected Check-In Date:</strong> {{ checkInDate | date }}</p>
+  <button class="btn btn-success" (click)="onSubmit()">Submit</button>
+</div>

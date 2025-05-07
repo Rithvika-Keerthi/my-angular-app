@@ -1,0 +1,33 @@
+<div class="sidebar">
+    <h3>Filters</h3>
+    <div class="filter-group">
+      <h4>Price</h4>
+      <input type="range" min="0" max="50000" [(ngModel)]="price" (input)="updatePriceDisplay()">
+      <p>Selected Price: ₹{{ displayedPrice }}</p>
+    </div>
+    <div class="filter-group">
+      <h4>Location</h4>
+      <label><input type="checkbox" [(ngModel)]="locations.chennai"> Chennai</label>
+      <label><input type="checkbox" [(ngModel)]="locations.hyderabad"> Hyderabad</label>
+      <label><input type="checkbox" [(ngModel)]="locations.bangalore"> Bangalore</label>
+      <label><input type="checkbox" [(ngModel)]="locations.pune"> Pune</label>
+    </div>
+    <div class="filter-group">
+      <h4>Room Categories</h4>
+      <label><input type="checkbox" [(ngModel)]="roomCategories.superSaver"> Super Saver</label>
+      <label><input type="checkbox" [(ngModel)]="roomCategories.delux"> Delux</label>
+      <label><input type="checkbox" [(ngModel)]="roomCategories.superDelux"> Super Delux</label>
+    </div>
+    <div class="filter-group">
+      <h4>Accommodation Type</h4>
+      <label><input type="checkbox" [(ngModel)]="accommodationType.resorts"> Resorts</label>
+      <label><input type="checkbox" [(ngModel)]="accommodationType.hotels"> Hotels</label>
+      <label><input type="checkbox" [(ngModel)]="accommodationType.privateVillas"> Private Villas</label>
+    </div>
+    <div class="filter-group">
+      <h4>Hotel Facilities</h4>
+      <label><input type="checkbox" [(ngModel)]="hotelFacilities.pool"> Pool</label>
+      <label><input type="checkbox" [(ngModel)]="hotelFacilities.gym"> Gym</label>
+      <label><input type="checkbox" [(ngModel)]="hotelFacilities.spa"> Spa</label>
+    </div>
+  </div>
