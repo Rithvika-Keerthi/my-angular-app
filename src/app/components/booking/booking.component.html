@@ -1,37 +1,28 @@
-<div class="container">
-  <div class="left-box">
-    <h2>Enter your details</h2>
-    <form>
-      <label for="fullName">Full Name</label>
-      <input type="text" id="fullName" [(ngModel)]="fullName" name="fullName">
+<div class="form-container">
+  <div class="date-section">
+    <div class="form-group">
+      <label for="startDate">Start Date</label>
+      <input 
+        type="date" 
+        id="startDate" 
+        [value]="travelPackageDetails.startDate"
+        (change)="onStartDateChange($event)" 
+        required />
+    </div>
 
-      <label for="emailAddress">Email Address</label>
-      <input type="email" id="emailAddress" [(ngModel)]="emailAddress" name="emailAddress">
+    <div class="form-group">
+      <label>Duration</label>
+      <span>{{ travelPackageDetails.duration }} days</span>
+    </div>
 
-      <label for="mobileNumber">Mobile Number</label>
-      <input type="text" id="mobileNumber" [(ngModel)]="mobileNumber" name="mobileNumber">
-
-      <button type="submit">Send passcode</button>
-    </form>
+    <div class="form-group">
+      <label>End Date</label>
+      <span>{{ travelPackageDetails.endDate }}</span>
+    </div>
   </div>
 
-  <div class="right-box">
-    <h2>Selected Hotel</h2>
-    <div class="hotel-info">
-      <div class="hotel-text">
-        <p>{{ hotelDetails.name }}</p>
-        <p>{{ hotelDetails.rating }} ({{ hotelDetails.reviewsCount }})</p>
-        <p>{{ hotelDetails.stayDates }}</p>
-        <p>{{ hotelDetails.roomTypeAndGuests }}</p>
-      </div>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnHFyGj0c1K-Mk106ZGT-juvcp-4Z8aMocHw&s" alt="Hotel Image" class="hotel-image">
-    </div>
-    <hr>
-    <p>Room price per night x 1 Guest: {{ hotelDetails.roomPricePerNightForGuest }}</p>
-    <p>Instant discount: {{ hotelDetails.instantDiscountAmountSavedOnBooking }}</p>
-    <p>Coupon discount: {{ hotelDetails.couponDiscount }}</p>
-    <p>Wizard Blue membership charge: {{ hotelDetails.wizardBlueMembershipCharge }}</p>
-    <hr>
-    <p><strong>Payable Amount: {{ hotelDetails.payableAmount }}</strong></p>
+  <div class="button-group">
+    <button class="btn btn-insurance">Add Insurance</button>
+    <button class="btn btn-submit">Submit</button>
   </div>
 </div>

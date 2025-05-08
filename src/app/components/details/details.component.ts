@@ -1,95 +1,90 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Import CommonModule
-import { RouterModule, Router, ActivatedRoute } from '@angular/router'; // Import Router, RouterModule, and ActivatedRoute for navigation
+import { CommonModule } from '@angular/common';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-details',
-  standalone: true, // Mark as standalone component
-  imports: [CommonModule, RouterModule], // Add CommonModule and RouterModule
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent {
-  bookings = [
+  travelPackages = [
     {
-      name: 'John Deo',
-      checkIn: '15-08-2025',
-      checkOut: '16-08-2025',
+      packageID: 1,
+      name: 'Adventure Package',
+      startDate: '2025-08-15',
+      endDate: '2025-08-16',
       status: 'Paid',
-      phone: '(123)123456',
-      roomCategories: 'Delux',
-      actions: 'View'
+      contact: '(123)123456',
+      destinations: 'Mountains, Rivers'
     },
     {
-      name: 'Tom Deo',
-      checkIn: '12-08-2025',
-      checkOut: '19-08-2025',
+      packageID: 2,
+      name: 'Beach Package',
+      startDate: '2025-08-12',
+      endDate: '2025-08-19',
       status: 'Paid',
-      phone: '(123)121356',
-      roomCategories: 'Delux',
-      actions: 'View'
-    },
-    {
-      name: 'Tom John',
-      checkIn: '3-08-2025',
-      checkOut: '7-08-2025',
-      status: 'Unpaid',
-      phone: '(123)120356',
-      roomCategories: 'Delux',
-      actions: 'View'
-    },
-    {
-      name: 'Jens Brincker',
-      checkIn: '15-08-2025',
-      checkOut: '16-08-2025',
-      status: 'Unpaid',
-      phone: '(123)123456',
-      roomCategories: 'Super Delux',
-      actions: 'View'
+      contact: '(123)121356',
+      destinations: 'Beaches, Islands'
     }
   ];
 
-  bookingToDelete: number | null = null;
+  packageToDelete: number | null = null;
   isConfirmationDialogVisible = false;
 
   constructor(private router: Router, private route: ActivatedRoute) {
-    // Retrieve updated check-in date from query parameters
     this.route.queryParams.subscribe(params => {
-      const bookingIndex = params['bookingIndex'] ? +params['bookingIndex'] : null;
-      const checkInDate = params['checkInDate'] ? new Date(params['checkInDate']) : null;
+      const packageID = params['packageID'] ? +params['packageID'] : null;
+      const startDate = params['startDate'] ? this.parseDate(params['startDate']) : null;
 
-      if (bookingIndex !== null && checkInDate) {
-        // Update only the specific booking's check-in date immutably
-        this.updateBookingCheckInDate(bookingIndex, checkInDate);
+      if (packageID !== null && startDate) {
+        this.updateBookingCheckInDate(packageID, startDate);
       }
     });
   }
 
-  editBooking(index: number): void {
-    this.router.navigate(['/app-edit'], { queryParams: { bookingIndex: index } });
+  editPackage(packageID: number): void {
+    this.router.navigate(['/app-edit'], { queryParams: { packageID } });
   }
 
-  updateBookingCheckInDate(index: number, checkInDate: Date): void {
-    this.bookings[index] = {
-      ...this.bookings[index],
-      checkIn: checkInDate.toLocaleDateString()
-    };
+  updateBookingCheckInDate(packageID: number, startDate: Date): void {
+    if (startDate.getDate()) {
+      alert('Invalid date. Please select a valid date.');
+      return;
+    }
+
+    const packageIndex = this.travelPackages.findIndex(pkg => pkg.packageID === packageID);
+    if (packageIndex !== -1) {
+      this.travelPackages[packageIndex] = {
+        ...this.travelPackages[packageIndex],
+        startDate: startDate.toLocaleDateString()
+      };
+    } else {
+      alert('Package not found. Please try again.');
+    }
   }
 
-  showConfirmationDialog(index: number): void {
-    this.bookingToDelete = index;
+  parseDate(dateString: string): Date {
+    const [year, month, day] = dateString.split('-').map(Number);
+    return new Date(year, month - 1, day);
+  }
+
+  showConfirmationDialog(packageID: number): void {
+    this.packageToDelete = packageID;
     this.isConfirmationDialogVisible = true;
   }
 
   cancelDelete(): void {
     this.isConfirmationDialogVisible = false;
-    this.bookingToDelete = null;
+    this.packageToDelete = null;
   }
 
   confirmDelete(): void {
-    if (this.bookingToDelete !== null) {
-      this.bookings.splice(this.bookingToDelete, 1);
-      this.bookingToDelete = null;
+    if (this.packageToDelete !== null) {
+      this.travelPackages = this.travelPackages.filter(pkg => pkg.packageID !== this.packageToDelete);
+      this.packageToDelete = null;
     }
     this.isConfirmationDialogVisible = false;
   }

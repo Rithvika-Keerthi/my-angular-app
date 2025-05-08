@@ -3,35 +3,35 @@
   <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Check In</th>
-        <th>Check Out</th>
+        <th>Package Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
         <th>Status</th>
-        <th>Phone</th>
-        <th>Room Categories</th>
+        <th>Contact</th>
+        <th>Destinations</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let booking of bookings; let i = index">
-        <td>{{ booking.name }}</td>
-        <td>{{ booking.checkIn }}</td>
-        <td>{{ booking.checkOut }}</td>
-        <td>{{ booking.status }}</td>
-        <td>{{ booking.phone }}</td>
-        <td>{{ booking.roomCategories }}</td>
+      <tr *ngFor= "let package of travelPackages; let i = index">
+        <td>{{package.name }}</td>
+        <td>{{ package.startDate }}</td>
+        <td>{{ package.endDate }}</td>
+        <td>{{ package.status }}</td>
+        <td>{{ package.contact }}</td>
+        <td>{{ package.destinations }}</td>
         <td>
-          <button class="btn btn-primary btn-sm" (click)="editBooking(i)">Edit</button>
-          <button class="btn btn-danger btn-sm" (click)="showConfirmationDialog(i)">Delete</button>
+          <button class="btn btn-primary btn-sm" (click)= "editPackage(package.packageID)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)= "showConfirmationDialog(package.packageID)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
 
   <!-- Confirmation Dialog -->
-  <div *ngIf="isConfirmationDialogVisible" class="confirmation-dialog">
-    <p>Are you sure you want to delete this booking?</p>
-    <button class="btn btn-secondary" (click)="cancelDelete()">No</button>
-    <button class="btn btn-danger" (click)="confirmDelete()">Yes</button>
+  <div *ngIf= "isConfirmationDialogVisible" class="confirmation-dialog">
+    <p>Are you sure you want to delete this travel package?</p>
+    <button class="btn btn-secondary" (click)= "cancelDelete()">No</button>
+    <button class="btn btn-danger" (click)= "confirmDelete()">Yes</button>
   </div>
 </div>
