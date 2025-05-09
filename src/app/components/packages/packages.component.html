@@ -1,22 +1,12 @@
 <div class="packages-container">
-    <h2>Travel Packages</h2>
-    
-    <div class="packages-grid">
-      <div *ngFor="let pkg of travelPackages" class="package-card">
-        <h3>{{ pkg.name }}</h3>
-        
-        <div class="package-details">
-          <p><strong>Destinations:</strong> {{ pkg.destinations }}</p>
-          <p><strong>Duration:</strong> {{ pkg.duration }} days</p>
-          <p><strong>Price:</strong> {{ pkg.price }}</p>
-          <p><strong>Status:</strong> {{ pkg.status }}</p>
-        </div>
-  
-        <button class="book-button" 
-                (click)="bookPackage(pkg.id)"
-                [class.disabled]="pkg.status !== 'Available'">
-          Book Now
-        </button>
-      </div>
-    </div>
+  <div class="package-box" *ngFor="let package of packages">
+    <img src="{{ package.image }}" alt="{{ package.title }}" class="package-image">
+    <h2>{{ package.title }}</h2>
+    <p>{{ package.description }}</p>
+    <p><strong>Duration:</strong> {{ package.duration }} days</p>
+    <p><strong>Price:</strong> ${{ package.price }}</p>
+    <p><strong>Included Services:</strong> {{ package.includedServices }}</p>
+    <p><strong>Category:</strong> {{ package.category }}</p>
+    <button class="book-now-btn" [routerLink]="'/app-booking'">Book Now</button>
   </div>
+</div>
